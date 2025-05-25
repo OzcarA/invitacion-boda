@@ -1,2 +1,74 @@
-# invitacion-boda
-Invitacion a nuestra boda
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitación de Boda</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+<body class="bg-pink-50 font-sans">
+  <div class="max-w-xl mx-auto p-6 text-center">
+    <h1 class="text-4xl font-bold text-pink-700 mb-4">¡Nos casamos!</h1>
+    <p class="text-lg text-gray-700">Estás cordialmente invitado a la boda de</p>
+    <p class="text-2xl font-semibold text-pink-600 my-2">Ana & Juan</p>
+    <p class="text-gray-700">Sábado, 15 de noviembre de 2025<br>Hacienda El Paraíso, 16:00 hrs</p>
+
+    <div class="my-6">
+      <h2 class="text-xl font-semibold mb-2">Confirma tu asistencia</h2>
+      <form id="rsvpForm" class="space-y-3">
+        <input type="text" id="nombre" placeholder="Tu nombre" class="w-full px-4 py-2 border rounded">
+        <input type="number" id="acompanantes" placeholder="Nº de acompañantes" class="w-full px-4 py-2 border rounded">
+        <textarea id="comentarios" placeholder="Comentarios (opcional)" class="w-full px-4 py-2 border rounded"></textarea>
+        <button type="submit" class="bg-pink-600 text-white px-4 py-2 rounded">Confirmar</button>
+      </form>
+    </div>
+
+    <div class="my-6">
+      <h2 class="text-xl font-semibold mb-2">Confirmados:</h2>
+      <ul id="confirmados" class="text-left bg-white p-4 rounded shadow"></ul>
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_DOMINIO.firebaseapp.com",
+      databaseURL: "https://TU_DOMINIO.firebaseio.com",
+      projectId: "TU_ID",
+      storageBucket: "TU_BUCKET",
+      messagingSenderId: "TU_SENDER_ID",
+      appId: "TU_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const acompanantes = document.getElementById('acompanantes').value;
+      const comentarios = document.getElementById('comentarios').value;
+
+      if (nombre.trim() === '') return;
+
+      db.ref('confirmados').push({ nombre, acompanantes, comentarios });
+
+      document.getElementById('rsvpForm').reset();
+    });
+
+    db.ref('confirmados').on('value', snapshot => {
+      const lista = document.getElementById('confirmados');
+      lista.innerHTML = '';
+      snapshot.forEach(child => {
+        const data = child.val();
+        const item = document.createElement('li');
+        item.className = 'border-b py-2';
+        item.textContent = `${data.nombre} (+${data.acompanantes})`;
+        lista.appendChild(item);
+      });
+    });
+  </script>
+</body>
+</html>
