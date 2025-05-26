@@ -10,11 +10,37 @@
 </head>
 <body class="bg-pink-50 font-sans">
   <div class="max-w-xl mx-auto p-6 text-center">
+
+    <!-- Imagen de portada -->
+    <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80"
+         alt="Boda" class="w-full rounded-2xl shadow-lg mb-6">
+
     <h1 class="text-4xl font-bold text-pink-700 mb-4">¡Nos casamos!</h1>
     <p class="text-lg text-gray-700">Estás cordialmente invitado a la boda de</p>
     <p class="text-2xl font-semibold text-pink-600 my-2">Ana & Juan</p>
-    <p class="text-gray-700">Sábado, 15 de noviembre de 2025<br>Hacienda El Paraíso, 16:00 hrs</p>
+    <p class="text-gray-700">Sábado, 30 de noviembre de 2025<br>Lovely Forever, 3:30 PM</p>
 
+    <!-- Detalles del evento -->
+    <div class="bg-white p-4 rounded shadow my-6 text-left">
+      <h2 class="text-xl font-semibold text-pink-700 mb-2">Detalles del Evento</h2>
+      <ul class="list-disc pl-6 text-gray-700 space-y-1">
+        <li><strong>Lugar:</strong> Lovely Forever Salón de Eventos</li>
+        <li><strong>Fecha y hora:</strong> 30 de noviembre, 3:30 PM</li>
+        <li><strong>Código de vestimenta:</strong> Formal</li>
+        <li><strong>Regalos:</strong> Tu presencia es nuestro mejor regalo ❤️</li>
+      </ul>
+    </div>
+
+    <!-- Mapa de ubicación -->
+    <div class="my-6">
+      <h2 class="text-xl font-semibold text-pink-700 mb-2">¿Cómo llegar?</h2>
+      <iframe class="w-full rounded shadow" height="300"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.0677342725176!2d-84.0241172!3d10.0252593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e58369508717%3A0x32031e408570e4a7!2sLovely%20Forever%20Sal%C3%B3n%20de%20Eventos!5e0!3m2!1ses-419!2scr!4v1716660000000"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- Confirmación de asistencia -->
     <div class="my-6">
       <h2 class="text-xl font-semibold mb-2">Confirma tu asistencia</h2>
       <form id="rsvpForm" class="space-y-3">
@@ -25,6 +51,7 @@
       </form>
     </div>
 
+    <!-- Lista de confirmados -->
     <div class="my-6">
       <h2 class="text-xl font-semibold mb-2">Confirmados:</h2>
       <ul id="confirmados" class="text-left bg-white p-4 rounded shadow"></ul>
@@ -33,13 +60,13 @@
 
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyBSC0JRDbSQeZWeWHBZPEII3d1FMNQCCvk",
-      authDomain: "invitacion-1e22.firebaseapp.com",
-      databaseURL: "https://invitacion-1e22-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "invitacion-1e22",
-      storageBucket: "invitacion-1e22.firebasestorage.app",
-      messagingSenderId: "748180895614",
-      appId: "1:748180895614:web:a59e740de269b32c65252f"
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_DOMINIO.firebaseapp.com",
+      databaseURL: "https://TU_DOMINIO.firebaseio.com",
+      projectId: "TU_ID",
+      storageBucket: "TU_BUCKET",
+      messagingSenderId: "TU_SENDER_ID",
+      appId: "TU_APP_ID"
     };
 
     firebase.initializeApp(firebaseConfig);
